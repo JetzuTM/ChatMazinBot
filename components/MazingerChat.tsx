@@ -11,7 +11,7 @@ interface Message {
   isError?: boolean;
 }
 
-const API_URL = "https://jetzu-mazingerpage.hf.space/chat";
+const API_URL = "https://jetzu-mazingerpage.hf.space/query";
 
 const initialMessages: Message[] = [
   {
@@ -67,7 +67,7 @@ export default function MazingerChat() {
       }
 
       const data = await response.json();
-      
+
       const botMessage: Message = {
         id: Date.now() + 1,
         text: data.response || "No pude procesar tu solicitud. Intenta de nuevo.",
@@ -78,7 +78,7 @@ export default function MazingerChat() {
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error conectando con el Instituto Fotonico:", error);
-      
+
       const errorMessage: Message = {
         id: Date.now() + 1,
         text: "Error de conexion con el Instituto Fotonico. Por favor, intenta de nuevo mas tarde.",
@@ -105,9 +105,8 @@ export default function MazingerChat() {
       {/* Chat Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:shadow-primary/50 ${
-          isOpen ? "rotate-90 scale-90" : ""
-        }`}
+        className={`fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:shadow-primary/50 ${isOpen ? "rotate-90 scale-90" : ""
+          }`}
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
       >
         {isOpen ? (
@@ -119,17 +118,16 @@ export default function MazingerChat() {
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-24 right-6 z-[9998] flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-primary/10 transition-all duration-300 ${
-          isOpen
+        className={`fixed bottom-24 right-6 z-[9998] flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-primary/10 transition-all duration-300 ${isOpen
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0"
-        }`}
+          }`}
       >
         {/* Header */}
         <div className="relative flex items-center gap-3 border-b border-border bg-muted/50 px-4 py-3">
           {/* Decorative line */}
           <div className="absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-primary to-transparent" />
-          
+
           <div className="relative flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
             <Bot className="h-5 w-5 text-primary" />
             <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-card bg-green-500" />
@@ -155,13 +153,12 @@ export default function MazingerChat() {
               >
                 {/* Avatar */}
                 <div
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
-                    message.isError
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${message.isError
                       ? "bg-destructive/20 text-destructive"
                       : message.isBot
                         ? "bg-primary/20 text-primary"
                         : "bg-accent/20 text-accent"
-                  }`}
+                    }`}
                 >
                   {message.isError ? (
                     <AlertCircle className="h-4 w-4" />
@@ -174,19 +171,17 @@ export default function MazingerChat() {
 
                 {/* Message Bubble */}
                 <div
-                  className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${
-                    message.isError
+                  className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${message.isError
                       ? "rounded-tl-sm bg-destructive/10 text-destructive border border-destructive/20"
                       : message.isBot
                         ? "rounded-tl-sm bg-muted text-foreground"
                         : "rounded-tr-sm bg-primary text-primary-foreground"
-                  }`}
+                    }`}
                 >
                   <p className="text-sm leading-relaxed">{message.text}</p>
                   <span
-                    className={`mt-1 block text-[10px] ${
-                      message.isBot ? "text-muted-foreground" : "text-primary-foreground/70"
-                    }`}
+                    className={`mt-1 block text-[10px] ${message.isBot ? "text-muted-foreground" : "text-primary-foreground/70"
+                      }`}
                   >
                     {message.timestamp.toLocaleTimeString("es-ES", {
                       hour: "2-digit",

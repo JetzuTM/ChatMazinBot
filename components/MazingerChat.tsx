@@ -100,16 +100,11 @@ export default function MazingerChat() {
     }
   };
 
-  const toggleChat = () => {
-    console.log("[v0] Toggle chat clicked, current isOpen:", isOpen);
-    setIsOpen(!isOpen);
-  };
-
   return (
     <>
       {/* Chat Toggle Button */}
       <button
-        onClick={toggleChat}
+        onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:shadow-primary/50 ${
           isOpen ? "rotate-90 scale-90" : ""
         }`}
@@ -140,7 +135,7 @@ export default function MazingerChat() {
             <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-card bg-green-500" />
           </div>
           <div className="flex-1">
-            <h3 className="font-display text-sm font-bold tracking-wide text-foreground">
+            <h3 className="text-sm font-bold tracking-wide text-foreground uppercase">
               MAZIN-BOT
             </h3>
             <p className="text-xs text-muted-foreground">

@@ -100,12 +100,17 @@ export default function MazingerChat() {
     }
   };
 
+  const toggleChat = () => {
+    console.log("[v0] Toggle chat clicked, current isOpen:", isOpen);
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       {/* Chat Toggle Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:shadow-primary/50 ${
+        onClick={toggleChat}
+        className={`fixed bottom-6 right-6 z-[9999] flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:shadow-primary/50 ${
           isOpen ? "rotate-90 scale-90" : ""
         }`}
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat"}
@@ -119,7 +124,7 @@ export default function MazingerChat() {
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-24 right-6 z-50 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-primary/10 transition-all duration-300 ${
+        className={`fixed bottom-24 right-6 z-[9998] flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-primary/10 transition-all duration-300 ${
           isOpen
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0"
